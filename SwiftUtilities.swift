@@ -14,9 +14,10 @@ import Foundation
 */
 public func roundToSignificantFigures(number: Double, sigFigs: UInt = 2) -> Double {
     precondition(number.isNormal, "roundToSignificantFigures - Number must be Normal")
+    precondition(sigFigs > 0, "significant figures must be greater than 0")
     
-    guard sigFigs > 0 else {
-        return 0.0
+    guard !number.isZero else {
+        return 0
     }
     
     let d: Double = ceil(log10(number < 0 ? -number : number))
